@@ -1,0 +1,39 @@
+.article{
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.title{
+    justify-content: center;
+display: flex;
+flex-direction: column;
+}
+.title:only-child{
+    display: flex;
+}
+
+.p{
+display: flex;
+margin: 2% 10%;
+font-size: large;
+ word-break: break-all;
+}
+
+.blockSpan{
+    display: inline-block;
+    font-style: italic;
+    font-size: 20px;
+    text-decoration: underline cadetblue;
+    color: cadetblue;
+}
+.blockSpan:hover{
+   color: red;
+    text-decoration: none;
+}
+
+.formatText{
+    white-space: pre-wrap;
+}

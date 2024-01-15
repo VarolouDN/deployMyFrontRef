@@ -1,0 +1,42 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+
+}
+.form input{
+    display: block;
+    min-width: 20vw;
+    min-height: 3vh;;
+    margin: 10px;
+}
+ /*.form input*/.btn{
+    display: block;
+    min-width: 15vw;
+    min-height: 4vh;;
+    margin: 20px;
+     border-radius: 10px;
+     border-width: 0px;
+     border-color: cadetblue;
+     background-color: cadetblue;
+}
+
+
+.form input:focus{
+
+background-color: whitesmoke;
+    border-color: goldenrod;
+}
+
+.form label{
+    color: cadetblue;
+}
+.decoration{
+    /*text-decoration: none;*/
+    color: cadetblue;
+}
+.decoration:hover{
+
+    color: red;
+}

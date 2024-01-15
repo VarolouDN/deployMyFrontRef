@@ -1,0 +1,28 @@
+.articles {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.block1,
+.block2,
+.block3 {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  align-items: center;
+}
+.decoration {
+  text-decoration: none;
+  color: cadetblue;
+  font-style: italic;
+}
+.decoration:hover {
+  color: red;
+}
+.block3{
+  display: flex;
+  flex-direction: column;
+}

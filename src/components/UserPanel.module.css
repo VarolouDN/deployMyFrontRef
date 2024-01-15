@@ -1,0 +1,26 @@
+.panel{
+    max-height: 10%;
+    display: flex;
+    flex-direction: row;
+    
+    justify-content:space-between;
+    padding: 20px;
+    background-color: aliceblue;
+
+}
+
+.block1,.block2,.block3,.block4{
+    padding: 10px;
+    display: flex;
+    
+    align-items: center;
+}
+
+.decoration{
+    text-decoration:cadetblue wavy underline;
+    color: black;
+}
+.decoration:hover{
+    text-decoration:none;
+    color: red;
+}

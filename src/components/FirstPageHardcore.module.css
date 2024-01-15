@@ -1,0 +1,22 @@
+.first{
+
+    display: flex;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+}
+
+.block1,.block2,.block3{
+    display: flex;
+    text-decoration: none;
+
+
+}
+.decoration{
+    text-decoration: none;
+    color: cadetblue;
+}
+.decoration:hover{
+    color: red;
+
+}
