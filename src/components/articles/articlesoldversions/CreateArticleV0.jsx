@@ -1,45 +1,53 @@
 import { Navigate, NavLink } from "react-router-dom";
-import styles from "./CreateArticle.module.css";
-import { useState } from "react";
+import styles from "../CreateArticle.module.css";
+import {useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { memoizedAuthSelector } from "./Auth";
-import { createArticle } from "./actions/articleActions";
-import {useNavigate} from "react-router";
+import { memoizedAuthSelector } from "../../auth/Auth";
+
+
+import {useCreateArticle} from "../useCreateArticle";
+
+
 export default function CreateArticle() {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [isCreated, setIsCreated] = useState(false);
+  const {isCreating,createArticle}=useCreateArticle()
    const dispatch=useDispatch()
-  const navigate=useNavigate()
+   const fileRef=useRef()
+
+
+
   const auth = useSelector(memoizedAuthSelector);
   if (!auth.isAuth) {
     return <Navigate to="/" />;
   }
 
+  function fileHandleChange(){
+
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    dispatch(
-      createArticle(title, auth.currentUser.name, auth.currentUser.id, text,navigate)
-    );
-    /* const newArticle = await createArticle();
-    if (!newArticle?.errors) {
-      setTitle("");
-      setText("");
-      alert("Article was created");
-      setIsCreated(true);*/
+    const newArticle={title,name: auth.currentUser.name, userId:auth.currentUser.id, text}
+      createArticle(newArticle)
+
+
   }
 
   return (
     <>
-      {isCreated ? (
-        <Navigate to="/articles" />
-      ) : (
+      {/*{isCreated ? (*/}
+      {/*  <Navigate to="/articles" />*/}
+      {/*) : (*/}
         <form className={styles.create} onSubmit={handleSubmit}>
           <h3>
             <NavLink to="/">To the main page</NavLink>
+            <br/>
+            <NavLink to="/articles">To the  articles</NavLink>
           </h3>
+
           <input
             type="text"
             placeholder="Choose the tittle"
@@ -47,15 +55,22 @@ export default function CreateArticle() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+
+          <div>
+          <input type='file' ref={fileRef} onChange={fileHandleChange}/>
+          </div>
+
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter your text"
             className={styles.textarea}
           />
+
           <button className={styles.btn}>Submit</button>
         </form>
-      )}
+    {/*)*/}
+      }
     </>
   );
 }

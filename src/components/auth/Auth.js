@@ -1,7 +1,7 @@
 import styles from "./Auth.module.css";
 import { NavLink } from "react-router-dom";
 import {useState} from "react";
-import {login} from "./actions/authActions";
+import {login} from "../actions/authActions";
 import {useDispatch,useSelector} from "react-redux";
 import {createSelector} from 'reselect'
 

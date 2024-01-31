@@ -1,16 +1,30 @@
 import "./App.css";
-import FirstPageHardcode from "./components/FirstPageHardcode";
+import FirstPageHardcode from "./components/firstpage/FirstPageHardcode";
 import { Routes, BrowserRouter, Route } from "react-router-dom";
-import Articles from "./components/Articles";
-import Auth, { memoizedAuthSelector } from "./components/Auth";
-import Register from "./components/Register";
-import CreateArticle from "./components/CreateArticle";
-
+import Articles from "./components/articles/Articles";
+import Auth, { memoizedAuthSelector } from "./components/auth/Auth";
+import Register from "./components/auth/Register";
+import CreateArticle from "./components/articles/CreateArticle";
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { authCheck } from "./components/actions/authActions";
 import { getArticles } from "./components/actions/articleActions";
-import UpdateArticle from "./components/UpdateArticle";
+import UpdateArticle from "./components/articles/UpdateArticle";
+import {QueryClient} from "@tanstack/react-query";
+import {QueryClientProvider} from "@tanstack/react-query";
+
+
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      // staleTime:60*1000
+      staleTime:0
+    }
+  }
+})
+
+
 function App() {
   const dispatch = useDispatch();
   const auth = useSelector(memoizedAuthSelector);
@@ -24,20 +38,26 @@ function App() {
   }, []);
   console.log('!')
 
+
+
+
   //Added one route to Update
   return (
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false}/>
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<FirstPageHardcode />} />
+          <Route /*path="/" */ index element={<FirstPageHardcode />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/register" element={<Register />} />
           <Route path="/create" element={<CreateArticle />} />
-          <Route path="/update" element={<UpdateArticle />} />
+          <Route path="/update/:_id" element={<UpdateArticle />} />
         </Routes>
       </BrowserRouter>
     </div>
+      </QueryClientProvider>
   );
 }
 

@@ -1,12 +1,15 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Articles.module.css";
 import Article from "./Article";
-import UserPanel from "./UserPanel";
+import UserPanel from "../users/UserPanel";
 import { useEffect } from "react";
-import { getArticles } from "./actions/articleActions";
+import { getArticles } from "../actions/articleActions";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { memoizedAuthSelector } from "./Auth";
+import { memoizedAuthSelector } from "../auth/Auth";
+import {useQueryClient} from "@tanstack/react-query";
+import {useArticles} from "./useArticles";
+import Spinner from "../ui/Spinner";
 
 const articlesSelector = (state) => state.articles;
 
@@ -16,15 +19,21 @@ const memoizedArticlesSelector = createSelector(
 );
 export default function Articles() {
   const auth = useSelector(memoizedAuthSelector);
-  const articles = useSelector(memoizedArticlesSelector);
+  // const articles = useSelector(memoizedArticlesSelector);
   const dispatch = useDispatch();
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // useEffect(() => {
+  //   eslint-disable-next-line react-hooks/exhaustive-deps
+  //
+  //   dispatch(getArticles());
+  // }, []);
 
-    dispatch(getArticles());
-  }, []);
+  //ACCESS QUERY CLIENT
+    const queryClient = useQueryClient()
 
-  console.log(articles);
+  const {isLoading,articles}=useArticles()
+    console.log(articles)
+
+  if(isLoading) return <Spinner/>
   return (
     <div className="articles">
       {auth.isAuth ? (
@@ -47,7 +56,7 @@ export default function Articles() {
         </NavLink>
       </div>
       <div className={styles.block3}>
-        {articles.articles.map((article) => {
+        {articles?.map((article) => {
           return (
             <Article
               key={article._id}

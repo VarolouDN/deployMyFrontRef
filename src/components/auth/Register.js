@@ -3,7 +3,7 @@ import { NavLink} from "react-router-dom";
  import {useState} from 'react'
 import {useNavigate} from 'react-router'
 import {useDispatch} from "react-redux";
-import {registration} from "./actions/registrationActions";
+import {registration} from "../actions/registrationActions";
 
 export default function Register() {
     const[email,setEmail]=useState('')

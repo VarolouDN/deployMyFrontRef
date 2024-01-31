@@ -1,9 +1,9 @@
-import "../App.css";
+import "../../App.css";
 import styles from "./FirstPageHardcore.module.css";
 import { NavLink } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {memoizedAuthSelector} from "./Auth";
-import {logout} from "./actions/authActions";
+import {memoizedAuthSelector} from "../auth/Auth";
+import {logout} from "../actions/authActions";
 
 export default function FirstPageHardcode() {
 

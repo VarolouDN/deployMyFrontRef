@@ -5,7 +5,7 @@ export default function UserPanel() {
   return (
     <div className={styles.panel}>
       <div className={styles.block1}>
-        <img src="" alt="avatar" />
+        <img src="src/components/users/UserPanel" alt="avatar" />
       </div>
 
       <div className={styles.block2}>

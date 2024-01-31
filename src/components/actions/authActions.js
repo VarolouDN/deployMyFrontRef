@@ -77,7 +77,7 @@ export function authCheck() {
 
       console.log("Token found in localStorage:", token);
 
-      const res = await fetch("https://localhost:5000/api/auth/auth", {
+      const res = await fetch("http://localhost:5000/api/auth/auth", {
         method: "get",
         headers: {
           "Content-Type": "application/json",

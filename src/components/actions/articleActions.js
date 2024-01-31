@@ -22,40 +22,40 @@ export const getArticles = () => (dispatch) => {
     .catch((e) => console.log(e));
 };
 
-export function createArticle(title, name, id, text, navigate) {
-  return async function (dispatch) {
-    try {
-      const res = await fetch("http://localhost:5000/api/article/create", {
-        method: "post",
-        body: JSON.stringify({
-          title: title,
-          name: name,
-          userId: id,
-          text: text,
-        }),
-        headers: {
-          "content-type": "application/json",
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-        },
-      });
-
-      const data = await res.json();
-      console.log(data.message);
-      if (data.success) {
-        alert(data.message);
-        navigate("/articles");
-      } else alert(data.message);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
-}
+// export function createArticle(title, name, id, text, navigate) {
+//   return async function (dispatch) {
+//     try {
+//       const res = await fetch("http://localhost:5000/api/article/create", {
+//         method: "post",
+//         body: JSON.stringify({
+//           title: title,
+//           name: name,
+//           userId: id,
+//           text: text,
+//         }),
+//         headers: {
+//           "content-type": "application/json",
+//           "Access-Control-Allow-Origin": "http://localhost:3000",
+//         },
+//       });
+//
+//       const data = await res.json();
+//       console.log(data.message);
+//       if (data.success) {
+//         alert(data.message);
+//         navigate("/articles");
+//       } else alert(data.message);
+//     } catch (e) {
+//       console.log(e.message);
+//     }
+//   };
+// }
 
 export function updateArticle(title, name, userId, text, _id, navigate) {
   return async function (dispatch) {
     try {
       const res = await fetch(
-        `https://deploy-my-back.vercel.app/api/article/articles/${_id}`,
+        `https://localhost:5000/api/article/articles/${_id}`,
         {
           method: "PUT",
           body: JSON.stringify({ title, name, userId, id: _id, text }),
