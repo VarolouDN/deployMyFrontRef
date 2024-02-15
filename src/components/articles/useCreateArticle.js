@@ -6,7 +6,7 @@ export function useCreateArticle() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { isLoading: isCreating, mutate: createArticle } = useMutation({
-    mutationFn: createArticleApi,
+    mutationFn: (article) => createArticleApi(article),
     onSuccess: () => {
       alert("Article was created");
       queryClient.invalidateQueries({
