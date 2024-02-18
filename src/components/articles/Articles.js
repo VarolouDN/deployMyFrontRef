@@ -6,9 +6,9 @@ import { useEffect } from "react";
 import { getArticles } from "../actions/articleActions";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { memoizedAuthSelector } from "../auth/Auth";
-import {useQueryClient} from "@tanstack/react-query";
-import {useArticles} from "./useArticles";
+import { memoizedAuthSelector } from "../auth/Login";
+import { useQueryClient } from "@tanstack/react-query";
+import { useArticles } from "./useArticles";
 import Spinner from "../ui/Spinner";
 
 const articlesSelector = (state) => state.articles;
@@ -28,12 +28,11 @@ export default function Articles() {
   // }, []);
 
   //ACCESS QUERY CLIENT
-    const queryClient = useQueryClient()
 
-  const {isLoading,articles}=useArticles()
-    console.log(articles)
+  const { isLoading, articles } = useArticles();
 
-  if(isLoading) return <Spinner/>
+  if (isLoading) return <Spinner />;
+
   return (
     <div className="articles">
       {auth.isAuth ? (

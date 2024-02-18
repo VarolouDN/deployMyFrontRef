@@ -1,5 +1,5 @@
 import styles from "./Article.module.css";
-import {Navigate, NavLink} from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   deleteArticle,
@@ -9,10 +9,10 @@ import {
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import UpdateArticle from "./UpdateArticle";
-import {useArticle} from "./useArticle";
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {API_URL, createArticleApi} from "../api/articlesApi";
-import {useDeleteArticle} from "./useDeleteArticle";
+import { useArticle } from "./useArticle";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { API_URL, createArticleApi } from "../api/articlesApi";
+import { useDeleteArticle } from "./useDeleteArticle";
 
 export default function Article({
   text,
@@ -23,36 +23,22 @@ export default function Article({
   _id,
   articles,
 }) {
-
   // const[articlesLength,setArticlesLength]=useState(articles.articles.length)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const[isEditing,setIsEditing]=useState(false)
-  const {isDeleting,deleteArticle}=useDeleteArticle()
-     // const {isLoading,currentArticle}=useQuery({
-     //     queryKey: ['articles', _id],
-     //     queryFn: async () => {
-     //         const response = await fetch(`${API_URL}/articles/${_id}`)
-     //         if (!response.ok) {
-     //             throw new Error('Network response was not ok')
-     //         }
-     //         return response.json()
-     //     },
-     // })
+  const [isEditing, setIsEditing] = useState(false);
+  const { isDeleting, deleteArticle } = useDeleteArticle();
 
   function articleHandler() {
-      setIsEditing(prev=>!isEditing)
+    setIsEditing((prev) => !isEditing);
 
-      navigate(`/update/${_id}`)
-      // dispatch(setCurrentArticle({ name, text, title, userId, _id }));
-
+    navigate(`/update/${_id}`);
   }
 
-    // const currentArticle = {name, text, title, userId, _id}
   function articleDeleteHandler() {
-    console.log("delete!!!")
-      console.log(_id,auth.currentUser.id)
-     deleteArticle({_id,userId:auth.currentUser.id})
+    console.log("delete!!!");
+    console.log(_id, auth.currentUser.id);
+    deleteArticle({ _id, userId: auth.currentUser.id });
   }
 
   return (
@@ -60,8 +46,7 @@ export default function Article({
       <div className={styles.title}>
         {auth.isAuth && auth.currentUser.id === userId ? (
           <div>
-            <NavLink  >
-
+            <NavLink>
               <span className={styles.blockSpan}>{title}</span>
             </NavLink>
           </div>
@@ -74,17 +59,12 @@ export default function Article({
         <p className={styles.formatText}>{text}</p>
       </div>
       {auth.isAuth && auth.currentUser.id === userId ? (
-        <button onClick={articleDeleteHandler}>
-          DELETE ARTICLE
-        </button>
+        <button onClick={articleDeleteHandler}>DELETE ARTICLE</button>
       ) : (
         <div></div>
       )}
       {auth.isAuth && auth.currentUser.id === userId ? (
-        <button onClick={articleHandler}>
-
-          EDIT ARTICLE
-        </button>
+        <button onClick={articleHandler}>EDIT ARTICLE</button>
       ) : (
         <div></div>
       )}

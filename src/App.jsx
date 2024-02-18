@@ -2,8 +2,8 @@ import "./App.css";
 import FirstPageHardcode from "./components/firstpage/FirstPageHardcode";
 import { Routes, BrowserRouter, Route } from "react-router-dom";
 import Articles from "./components/articles/Articles";
-import Auth, { memoizedAuthSelector } from "./components/auth/Auth";
-import Register from "./components/auth/Register";
+import Login, { memoizedAuthSelector } from "./components/auth/Login";
+import SignUp from "./components/auth/SignUp";
 import CreateArticle from "./components/articles/CreateArticle";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools"
 import { useDispatch, useSelector } from "react-redux";
@@ -50,8 +50,8 @@ function App() {
         <Routes>
           <Route /*path="/" */ index element={<FirstPageHardcode />} />
           <Route path="/articles" element={<Articles />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/auth" element={<Login />} />
+          <Route path="/register" element={<SignUp />} />
           <Route path="/create" element={<CreateArticle />} />
           <Route path="/update/:_id" element={<UpdateArticle />} />
         </Routes>

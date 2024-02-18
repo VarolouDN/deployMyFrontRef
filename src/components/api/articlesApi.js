@@ -11,12 +11,13 @@ export async function getArticles() {
   return data;
 }
 
-export async function getArticle(id) {
+export async function getArticleApi(id) {
+  console.log("id");
   const res = await fetch(`${API_URL}/articles/${id}`);
   if (!res.ok) throw Error(`Couldn't find article with id #${id}`);
 
   const data = await res.json();
-  console.log(data);
+
   return data;
 }
 

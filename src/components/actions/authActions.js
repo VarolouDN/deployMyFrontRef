@@ -92,7 +92,7 @@ export function authCheck() {
       }
 
       const data = await res.json();
-      console.log("Auth response data:", data);
+      console.log("Login response data:", data);
 
       dispatch(setCurrentUserActionCreator(data.user));
       localStorage.setItem("token", data.token);

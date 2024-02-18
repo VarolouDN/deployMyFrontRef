@@ -1,4 +1,4 @@
-import styles from "./Auth.module.css";
+import styles from "./Login.module.css";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { registration } from "../actions/registrationActions";
 import useSignUp from "./useSignUp";
 
-export default function Register() {
+export default function SignUp() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +35,7 @@ export default function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!email || !name || !password) return;
     const user = { email, name, password };
     // dispatch(registration(email,name,password,navigate))
     signUp(user);

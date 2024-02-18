@@ -2,7 +2,7 @@ import { Navigate, NavLink } from "react-router-dom";
 import styles from "../CreateArticle.module.css";
 import {useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { memoizedAuthSelector } from "../../auth/Auth";
+import { memoizedAuthSelector } from "../../auth/Login";
 
 
 import {useCreateArticle} from "../useCreateArticle";
